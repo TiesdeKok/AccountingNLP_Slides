@@ -3,6 +3,7 @@
   <head>
     <title>AccountingNLP_slides</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+       <base target="_blank">
     <style type="text/css">
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
@@ -145,6 +146,12 @@
         float: right;
         padding-top: 1em;
       }
+      .right-column-next {
+        width: 75%;
+        float: right;
+        display: block;
+        margin-top: -30px;
+      }
 
       .titleslide {
       	background-image: url("images/campus_background.jpg");
@@ -176,15 +183,86 @@
 	    bottom: -2px;
 	    position: absolute;
 		left: 400px;
+    }
+        
+    span:after { content:""; display: block;}
+        
+    .arrow-right:after {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-left: 15px solid #193a70;
+        padding-right: 10px;
+        vertical-align: middle;
+      
+    }
+        
+    .orange-button {
+    background-color: #E46E2E;
+    border-radius: 2px;
+    color: white;
+    display: inline-block;
+    font-size: 16px;
+    padding: 13px 26px;
+    text-align: center;
+    text-decoration: none;
+    margin: 0px 4px 0px 4px;
+    }
 
+    .orange-button:hover {
+        background-color: #F27624;
+        color: white;
+        text-decoration: none;
+    }
+
+    .orange-button:active, .orange-button:focus {
+        background-color: #DC601C;
+        color: white;
+        text-decoration: none;
+    }
+        
+    .install-button {
+        margin-top: 20px;
+    }
+        
+    blockquote {
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 0.5em 10px;
+      padding: 0.5em 10px;
+      quotes: "\201C""\201D""\2018""\2019";
+    }
+
+    blockquote p {
+      display: inline;
+    }
+        
+    .frame
+    {
+        width: 1920px;
+        height: 1080px;
+        border: 0;
+
+        -ms-transform: scale(0.80);
+        -moz-transform: scale(0.80);
+        -o-transform: scale(0.80);
+        -webkit-transform: scale(0.80);
+        transform: scale(0.80);
+
+        -ms-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
+        -o-transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+    }
+        
     </style>
   </head>
   <body>
 
     <textarea id="source">
-
-
-
 
 class: center, titleslide
 
@@ -192,7 +270,7 @@ class: center, titleslide
 # Text Mining Techniques
 # Accounting Research
 <br>
-## [Ties de Kok](http://www.tiesdekok.com)
+## <a href="http://www.tiesdekok.com" target="_blank">Ties de Kok</a>
 ## Tilburg University
 
 ---
@@ -200,7 +278,7 @@ class: center, titleslide
 layout: true
 class: mainlayout
 
-<div class='custom_footer'><span>NLP Techniques for Accounting Research | Ties de Kok (&copy; 2017)</span></div> 
+<div class='custom_footer'><span>Text Mining (NLP) for Accounting Research | Ties de Kok (&copy; 2017)</span></div> 
 
 ---
 
@@ -211,23 +289,18 @@ class: tocslide
 ]
 .right-column[
 
+### What are we going to discuss today?
 1. Positioning session
 2. Terminology
-3. NLP Tools
-4. Topic overview
-5. NLP Tools per topic
-6. Main topics  
+3. Language
+4. Jupyter
+5. NLP Python tools
+6. Topics:  
 	- Process and Clean text  
 	- Direct feature extraction   
-	    * Feature search
-	    * Text evaluation
     - Represent text numerically
-    	* Bag of words
-    	* Word embeddings
 	- Statistical Analysis
-		* Supervised
-		* Unsupervised
-		* Neural networks
+    
 ]
 
 ---
@@ -238,7 +311,7 @@ class: tocslide
   ## Positioning
 ]
 .right-column[
-Where does this session fit into the bigger scheme of NLP?
+### Where does this session fit into the bigger scheme of NLP?
 
 - Relevance textual data
 
@@ -246,9 +319,12 @@ Where does this session fit into the bigger scheme of NLP?
 
 - Gathering textual data
 
-- .emphasized[Processing textual data]
+<span style="padding-left: 20px" class="arrow-right"></span> .emphasized[Processing textual data]
 
-- .emphasized[Analyzing textual data]
+<span style="padding-left: 20px" class="arrow-right"></span> .emphasized[Analyzing textual data]
+        
+
+- Include into main statistical analysis
 
 ]
 
@@ -261,15 +337,15 @@ class: tocslide
   ## Terminology
 ]
 .right-column[
-Multiple terms, largely equal but not completely.
+### Many inter-related names and terms:
 
 - Computational Linguistics
 
 - Textual Analysis
 
-- .emphasized[Text Mining]
+<span style="padding-left: 20px" class="arrow-right"></span> .emphasized[Text Mining]
 
-- .emphasized[Natural Language Processing]
+<span style="padding-left: 20px" class="arrow-right"></span> .emphasized[Natural Language Processing]
 
 ]
 
@@ -283,13 +359,73 @@ class: tocslide
   ## Language
 ]
 .right-column[
-Which programming language / software to use?
+### Which programming language / software to use?
 
-- .emphasized[Python]
+<span style="padding-left: 20px" class="arrow-right"></span> .emphasized[Python]
 
 - R
 
 - PERL
+        
+<br><br>
+        
+To get started with the Python basics see my [Python Tutorial](https://github.com/TiesdeKok/LearnPythonforResearch)
+
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Agenda
+  ## Positioning
+  ## Terminology
+  ## Language
+  ## Jupyter
+
+]
+
+.right-column[
+
+### Project Jupyter
+        
+
+<div style="text-align: center;">
+    <img src="images/Jupyter_Screenshot.PNG", width=85%>
+    <a class="orange-button" href="https://try.jupyter.org/" target="_blank">Try it in your browser</a>
+    <a class="orange-button install-button" href="http://jupyter.org/install.html">Install the Notebook</a>
+</div>
+        
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Agenda
+  ## Positioning
+  ## Terminology
+  ## Language
+  ## Jupyter
+  ## NLP Python
+]
+
+.right-column[
+
+### External NLP-relevant Python libraries
+
+**Standard NLP libraries**:
+1. [`NLTK`](http://www.nltk.org/) and the higher-level wrapper [`TextBlob`](https://textblob.readthedocs.io/en/dev/) 
+2. [`Spacy`](https://spacy.io/) and the higher-level wrapper [`Textacy`](https://github.com/chartbeat-labs/textacy) 
+        
+**Standard machine learning library**:
+
+1. [`scikit learn`](http://scikit-learn.org/stable/)
+        
+**Topic modelling libraries**:
+
+1. [`Gensim`](https://github.com/RaRe-Technologies/gensim)
+2. [`FastText`](https://github.com/salestock/fastText.py)
 
 ]
 
@@ -301,41 +437,17 @@ class: tocslide
   ## Positioning
   ## Terminology
   ## Language
+  ## Jupyter
+  ## NLP Python
   ## Topics
 ]
 
 .right-column[
 
-<img src="images/Topic_diagram_RFA.png", width=85%>
+<img style="position: relative; top: -40px" src="images/Topic_diagram_RFA.png", width=85%>
 
 ]
-
----
-class: tocslide
-
-.left-column[
-  ## Agenda
-  ## Positioning
-  ## Terminology
-  ## Language
-  ## Topics
-  ## Code
-]
-
-.right-column[
-
-## Packages:
-
-Data & Cleaning: `Spacy` (+ `Textacy`), `NLTK` (+ `TextBlob`)
-
-Feature extraction: `Spacy`, `TextBlob`, `RE`, `Langdetect`, `Fuzzywuzzy`
-
-Analysis: `Sklearn`, `Scipy`, `pyLDAvis`, `Pandas`/`Numpy`
-]
-
-.footer[These slides available at <http://bit.ly/myslides>]
-
-
+            
 ---
 class: tocslide
 
@@ -344,11 +456,130 @@ class: tocslide
 ]
 
 .right-column[
+        
+### Text normalization
 
-Processing and cleaning of text 
-- Normalization
+- Deal with unwanted characters  
+    > i.e. remove unwanted unicode characters 
+- Sentence segmentation
+    > i.e. split text up into sentences
+- Word tokenization
+    > i.e. split sentence up into tokens (i.e. words)
+- Entity normalization
+    > i.e. "$2.50" → "two dollars and fifty cents"
+- Lemmatization & Stemming
 
-- Language modelling 
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+]
+
+.right-column[
+        
+###<span style="padding-left: 15px">Lemmatization & Stemming</span>
+        
+<div style="position: relative; top: -40px" >
+    <img style="padding-top: 20px; padding-bottom: 10px;" src="images/StackOverflow_Stemming.PNG", width=70%><br>
+
+    Example: <br>
+
+    <img style="position: relative; left: +60px; padding-top: 10px" src="images/StemmingvsLemma.PNG", width=60%> 
+</div>
+
+
+]        
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+]
+
+.right-column[
+        
+### Language modelling
+        
+Text has a complex underlying structure that you can tap into. 
+
+- Part-of-Speech tagging
+    > Identify the "Word Class" of a token (e.g. noun, verb)
+- Stop words
+    > Words that don't carry any informational value 
+- Uni-Gram vs. N-Grams
+    > Multi-word token: retain some of the sequential nature
+
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+]
+
+.right-column[
+        
+###<span style="padding-left: 15px">Uni-Gram vs. N-Grams</span>
+
+> Multi-word token: retain some of the sequential nature
+         
+<span style='display:block; text-align: center'>"Tilburg University is located in Noord Brabant"</span>
+        
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:2px 50px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;
+    text-align: center}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal; font-weight: bold}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-yw4l">Unigram</th>
+    <th class="tg-yw4l">Bigram</th>
+    <th class="tg-yw4l">Trigram</th>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Tilburg</td>
+    <td class="tg-yw4l">Tilburg-University</td>
+    <td class="tg-yw4l">Tilburg-University-is</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">University</td>
+    <td class="tg-yw4l">University-is</td>
+    <td class="tg-yw4l">University-is-located</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">is</td>
+    <td class="tg-yw4l">is-located</td>
+    <td class="tg-yw4l">is-located-in</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">located</td>
+    <td class="tg-yw4l">located-in</td>
+    <td class="tg-yw4l">located-in-Noord</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">in</td>
+    <td class="tg-yw4l">in-Noord</td>
+    <td class="tg-yw4l">in-Noord-Brabant</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Noord</td>
+    <td class="tg-yw4l">Noord-Brabant</td>
+    <td class="tg-yw4l"></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Brabant</td>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l"></td>
+  </tr>
+</table>
+
 
 ]
 
@@ -362,15 +593,74 @@ class: tocslide
 
 .right-column[
 
-Feature extraction
+### Feature search
 
-- Feature search 
-	* Dictionary counting
-	* Entity recognition
-	* Pattern search (`RE`)
-- Text evaluation
-	* Readability
-	* Dictionary counting
+* Entity extraction
+> e.g. extract PEOPLE / EVENTS / DATES / MONETARY VALUES
+* Pattern search (`RE`)
+> i.e. use [`Regular Expressions`](https://scotch.io/tutorials/an-introduction-to-regex-in-python) to look for patterns
+* Term (Dictionary) counting
+> i.e. count the number of times a term occurs
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+]
+
+.right-column[
+
+### Pattern search (`RE`)
+
+<img style="position: relative; margin-top:20px;" src="images/RE_example.PNG", width=75%>
+<br><br>
+        
+**TIP**: Use [Pythex.org](https://pythex.org/) to try out your regular expression
+
+
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+]
+
+.right-column[
+
+### Term (Dictionary) counting
+        
+<img style="position: relative; margin-top:20px;" src="images/Count_example.PNG", width=75%>
+
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+]
+
+.right-column[
+
+### Text evaluation
+
+* Language
+> i.e. detect whether text is English
+* Readability
+> i.e. use the [`TextStat`](https://github.com/shivam5992/textstat) package to calculate text statistics
+* Text similarity
+        
+<img style="position: relative; margin-left:40px;" src="images/Similarity_example.PNG", width=65%>
+        
+See the awesome [`FuzzyWuzzy`](https://github.com/seatgeek/fuzzywuzzy) package for details.
+
 ]
 
 ---
@@ -384,13 +674,90 @@ class: tocslide
 
 .right-column[
 
-Represent textual data numerically 
-
-- Bag of Words
-
-- Word Embeddings (`word2vec`)
+### Bag of Words 
+        
+Also labelled: *frequency based representation*
+        
+Term frequency (TF)        
+        
+<img style="position: relative; margin-left:40px;" src="images/BoWs_figure61.PNG", width=65%><br>
+<span style="font-size: 8pt; position: relative; margin-left:110px">(Figure taken from: https://web.stanford.edu/~jurafsky/slp3/6.pdf)</span>
 
 ]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+]
+
+.right-column[
+
+    
+### Bag of Words 
+<img style="position: relative; margin-left:20px; margin-top: -20px;" src="http://www.quentinfily.fr/wp-content/uploads/2015/11/td-idf-graphic.png", width=50%><br>
+<img style="position: relative; margin-left:20px;" src="https://d1avok0lzls2w.cloudfront.net/uploads/blog/5445d032e97981.23456174.jpg", width=50%><br>
+<span style="font-size: 8pt; position: relative; margin-left:40px">(Figures taken from: http://www.quentinfily.fr/wp-content/uploads/2015/11/td-idf-graphic.png and https://moz.com/blog/7-advanced-seo-concepts)</span>  
+    
+]
+     
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+]
+
+.right-column[
+
+### Word Embeddings
+        
+Can we do better than a Frequency based representation?  
+<span style="padding-left: 20px" class="arrow-right"></span> Yes, meet the new "secret sauce": **word embeddings**!
+        
+]
+        
+--
+
+.right-column-next[
+<br>
+        
+The most well-known method is called *word2vec*:
+        
+> Word2vec creates a prediction based representation of text based on several hundered dimensions using a two-layer neural network.   
+        <br>
+        
+> Each word in the corpus has a probability of belonging to each dimension, resulting in a vector of probabilities.
+        
+Note, this is sometimes referred to as *Continous Bag of Words*
+
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+]
+
+.right-column[
+
+### Word2Vec example
+        
+> Paris – France + Spain = Madrid
+        
+]
+        
+--
+        
+<img style="position: relative; margin-left:20px; margin-top: -10px;" src="images/Word2Vec_example.PNG", width=50%><br>
 
 ---
 class: tocslide
@@ -404,14 +771,178 @@ class: tocslide
 
 .right-column[
 
-Machine learning
+### What is Machine Learning?
+<span></span>
 
-- Supervised (Naive Bayes, SVM)
+> A machine learning algorithm is not explicitly programmed. <br>
+  Instead, the algorithm is trained based on the input + output data.
+        
+Does this sound familiar? 
+]
+        
+--
+        
+.right-column-next[
+        
+<span style="padding-left: 20px" class="arrow-right"></span> A linear regression is also machine learning!
+]
+--
+.right-column-next[
+        
+### Example: sentiment analysis
+        
+Traditional method:  
+<span style="padding-left: 20px" class="arrow-right"></span> manually create pos/neg word lists
 
-- Unsupervised (LDA)
+Machine learning method:   
+<span style="padding-left: 20px" class="arrow-right"></span> manually classify sentence pos/neg score  
+<span style="padding-left: 20px" class="arrow-right"></span> pos/neg word lists determined by algorithm
 
 ]
+        
+---
+class: tocslide
 
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+  ## Machine Learning
+]
+
+.right-column[
+
+### Supervised Machine Learning
+<span></span>
+
+> Supervised ML algorithms are trained on classified training data.
+]
+        
+--
+.right-column-next[
+<span style="display:block; height:1px"></span>             
+### Where to get training data?
+
+1. Use a naturally classified training set  
+ - News categories
+ - Movie reviews
+ - Text books for different levels of English
+        
+2. Create your own training set
+ - Manually classify text
+ - Crowdsource a training set 
+        
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+  ## Machine Learning
+]
+
+.right-column[
+
+### Supervised Machine Learning: models
+<span></span>
+
+Two often used models for Supervised ML are:
+        
+1. Naive Bayes classifier ([sklearn link](http://scikit-learn.org/stable/modules/naive_bayes.html))
+2. SVM: Support Vector Machines ([sklearn link](http://scikit-learn.org/stable/modules/svm.html))  
+3. Decision Trees ([sklearn link](http://scikit-learn.org/stable/modules/tree.html#classification)) 
+]
+--
+.right-column-next[
+        
+**My recommendation?**
+        
+Always try multiple models to see which gives you the best results.
+        
+* Naive Bayes is good for small samples and quick testing.  
+* SVM is more sophisticated, generally better for more complex models. 
+* Decision Trees are more intuitive but harder to train. 
+        
+Regardless of the model:  
+<span style="padding-left: 20px" class="arrow-right"></span> hyperparameters are very important!
+        
+        
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+  ## Machine Learning
+]
+
+.right-column[
+
+### Unsupervised Machine Learning
+<span></span>
+
+> Unsupervised ML algorithms are trained using only input data.
+        
+Do unsupervised ML models work for all problems?  
+<span style="padding-left: 20px" class="arrow-right"></span> No! Usually only for clustering / topic modelling.  
+        
+]
+        
+--
+.right-column-next[
+<br>
+Examples of unsupervised models:  
+        
+1. Word2Vec  
+2. Principal Component Analysis / Factor Analysis  
+3. .emphasized[Latent Dirichlet Allocation (LDA)]
+        
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+  ## Machine Learning
+]
+
+.right-column[
+
+### Latent Dirichlet Allocation (LDA)
+<span></span>
+
+> Unsupervised topic model technique to discover abstract topics from a collection of documents.
+        
+]
+--
+.right-column-next[
+<br>
+        
+### LDA procedure
+        
+You define the number of topics (*N*) and the other hyperparameters.  
+        
+LDA then assigns each document a vector with *N* topic probabilities.  
+        
+**Important:** topics are not labeled and there is a degree of randomness
+> i.e. running the same model twice can result in different topic labels! 
+                
+]
+        
+---
+class: tocslide
+
+<iframe class='frame' src="http://www.tiesdekok.com/ldaVIS_full_10.html" style="border:none;"></iframe>
+        
 ---
 class: tocslide
 
@@ -425,12 +956,76 @@ class: tocslide
 
 .right-column[
 
-Neural Networks
+### Neural Networks Primer
 
-- What is a Neural Networks
+Linear regression in "Neural Network" representation:
+        
+<img style="position: relative; margin-left:20px; margin-top: -10px;" src="images/Linear_model.PNG", width=55%><br>
 
-- Impact NN on NLP
+]
+        
+---
+class: tocslide
 
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+  ## Machine Learning
+  ## Neural Networks
+]
+
+.right-column[
+
+### Neural Networks Primer
+
+Shallow Neutral Network representation:
+        
+<img style="position: relative; margin-left:20px; margin-top: -10px;" src="images/Neural_network.PNG", width=75%><br>
+
+]
+        
+--
+.right-column-next[
+Why?   
+<span style="padding-left: 20px" class="arrow-right"></span> Allows to model complex non-linear relationships!
+        ]
+        
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+  ## Machine Learning
+  ## Neural Networks
+]
+
+.right-column[
+
+### Neural Networks for NLP
+        
+Natural Language is very complex, NLP is hard:
+        
+1. The Pope's baby steps on gays
+2. Scientists study whales from space
+3. Boy paralyzed after tumor fights back to gain black belt
+        
+<span style="font-size: 8pt; position: relative; margin-left:20px">(Examples from: http://web.stanford.edu/class/cs224n/lectures/cs224n-2017-lecture1.pdf)</span>
+]
+--
+        
+.right-column-next[
+        
+### Deep Neural Networks
+        
+DNN allow to model complex phenomenon, promising progress for NLP!
+    
+
+Interested? Check out the Stanford course CS224n ([Syllabus](http://web.stanford.edu/class/cs224n/syllabus.html))!   
+        
 ]
 
 ---
