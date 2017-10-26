@@ -257,6 +257,25 @@
         -webkit-transform-origin: 0 0;
         transform-origin: 0 0;
     }
+
+    .frame1
+    {
+        width: 1200px;
+        height: 750px;
+        border: 0;
+
+        -ms-transform: scale(0.60);
+        -moz-transform: scale(0.60);
+        -o-transform: scale(0.60);
+        -webkit-transform: scale(0.60);
+        transform: scale(0.60);
+
+        -ms-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
+        -o-transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+    }
         
     </style>
   </head>
@@ -313,6 +332,8 @@ class: tocslide
 .right-column[
 ### Where does this session fit into the bigger scheme of NLP?
 
+<span style="display: block; padding-top: 1px"></span>
+
 - Relevance textual data
 
 - Sources textual data
@@ -360,6 +381,7 @@ class: tocslide
 ]
 .right-column[
 ### Which programming language / software to use?
+<span style="display: block; padding-top: 1px"></span>
 
 <span style="padding-left: 20px" class="arrow-right"></span> .emphasized[Python]
 
@@ -447,7 +469,21 @@ class: tocslide
 <img style="position: relative; top: -40px" src="images/Topic_diagram_RFA.png", width=85%>
 
 ]
-            
+
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+]
+
+.right-column[
+        
+<img style="position: relative; top: -40px" src="images/ProcClean_topic_diagram.png", width=85%>
+
+
+]            
+
 ---
 class: tocslide
 
@@ -459,8 +495,6 @@ class: tocslide
         
 ### Text normalization
 
-- Deal with unwanted characters  
-    > i.e. remove unwanted unicode characters 
 - Sentence segmentation
     > i.e. split text up into sentences
 - Word tokenization
@@ -468,6 +502,7 @@ class: tocslide
 - Entity normalization
     > i.e. "$2.50" → "two dollars and fifty cents"
 - Lemmatization & Stemming
+  > Convert tokens to a base representation
 
 ]
         
@@ -480,18 +515,27 @@ class: tocslide
 
 .right-column[
         
-###<span style="padding-left: 15px">Lemmatization & Stemming</span>
+###<span style="padding-left: 1px">Lemmatization & Stemming</span>
         
 <div style="position: relative; top: -40px" >
-    <img style="padding-top: 20px; padding-bottom: 10px;" src="images/StackOverflow_Stemming.PNG", width=70%><br>
+    <br>Example: <br>
 
-    Example: <br>
+    <img style="position: relative; left: +60px; padding-top: 10px" src="images/StemmingvsLemma.PNG", width=60%> <br>
 
-    <img style="position: relative; left: +60px; padding-top: 10px" src="images/StemmingvsLemma.PNG", width=60%> 
 </div>
 
 
-]        
+]       
+--
+
+.right-column-next[
+<div style="position: relative; top: -20px" >
+
+    <img style="padding-top: 20px; padding-bottom: 10px;" src="images/StackOverflow_Stemming.PNG", width=70%><br>
+
+</div>
+
+] 
         
 ---
 class: tocslide
@@ -508,8 +552,8 @@ Text has a complex underlying structure that you can tap into.
 
 - Part-of-Speech tagging
     > Identify the "Word Class" of a token (e.g. noun, verb)
-- Stop words
-    > Words that don't carry any informational value 
+- Remove stop words
+    > Remove words that don't carry any informational value 
 - Uni-Gram vs. N-Grams
     > Multi-word token: retain some of the sequential nature
 
@@ -582,6 +626,20 @@ class: tocslide
 
 
 ]
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+]
+
+.right-column[
+
+<img style="position: relative; top: -40px" src="images/FE_topic_diagram.png", width=85%>
+
+]
+
 
 ---
 class: tocslide
@@ -597,8 +655,10 @@ class: tocslide
 
 * Entity extraction
 > e.g. extract PEOPLE / EVENTS / DATES / MONETARY VALUES
+
 * Pattern search (`RE`)
 > i.e. use [`Regular Expressions`](https://scotch.io/tutorials/an-introduction-to-regex-in-python) to look for patterns
+
 * Term (Dictionary) counting
 > i.e. count the number of times a term occurs
 ]
@@ -619,6 +679,8 @@ class: tocslide
 <br><br>
         
 **TIP**: Use [Pythex.org](https://pythex.org/) to try out your regular expression
+
+Example on Pythex: <a href="https://pythex.org/?regex=IDNUMBER: (\d\d\d-\w\w)&test_string=Ties de Kok (IDNUMBER: 123-AZ). Rest of Text.">click here</a>
 
 
 ]
@@ -674,6 +736,21 @@ class: tocslide
 
 .right-column[
 
+<img style="position: relative; top: -40px" src="images/RepNum_topic_diagram.png", width=85%>
+
+]
+
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+]
+
+.right-column[
+
 ### Bag of Words 
         
 Also labelled: *frequency based representation*
@@ -682,6 +759,32 @@ Term frequency (TF)
         
 <img style="position: relative; margin-left:40px;" src="images/BoWs_figure61.PNG", width=65%><br>
 <span style="font-size: 8pt; position: relative; margin-left:110px">(Figure taken from: https://web.stanford.edu/~jurafsky/slp3/6.pdf)</span>
+
+]
+
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+]
+
+.right-column[
+                
+### Term frequency (TF) example:
+
+> <span style='font-size: 10pt; line-height: 80%'>[1] "The sky is blue."                           
+> [2] "The sun is bright today."                   
+> [3] "The sun in the sky is bright."              
+> [4] "We can see the shining sun, the bright sun."</span>
+
+<br>
+<img style="position: relative; margin-left:40px;" src="images/TF_matrix.PNG", width=20%><br>
+
+<br>
+<span style="font-size: 8pt; position: relative; margin-left:110px">(Example taken from: http://ethen8181.github.io/machine-learning/clustering_old/tf_idf/tf_idf.html)</span>
 
 ]
         
@@ -699,11 +802,41 @@ class: tocslide
     
 ### Bag of Words 
 <img style="position: relative; margin-left:20px; margin-top: -20px;" src="http://www.quentinfily.fr/wp-content/uploads/2015/11/td-idf-graphic.png", width=50%><br>
+
+]
+
+--
+.right-column-next[
 <img style="position: relative; margin-left:20px;" src="https://d1avok0lzls2w.cloudfront.net/uploads/blog/5445d032e97981.23456174.jpg", width=50%><br>
-<span style="font-size: 8pt; position: relative; margin-left:40px">(Figures taken from: http://www.quentinfily.fr/wp-content/uploads/2015/11/td-idf-graphic.png and https://moz.com/blog/7-advanced-seo-concepts)</span>  
+<span style="font-size: 8pt; position: relative; margin-left:00px">(Figures taken from: http://www.quentinfily.fr/wp-content/uploads/2015/11/td-idf-graphic.png and https://moz.com/blog/7-advanced-seo-concepts)</span>  
     
 ]
-     
+
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+]
+
+.right-column[
+                
+### TF-IDF example:
+
+> <span style='font-size: 10pt; line-height: 80%'>[1] "The sky is blue."                           
+> [2] "The sun is bright today."                   
+> [3] "The sun in the sky is bright."              
+> [4] "We can see the shining sun, the bright sun."</span>
+
+<br>
+<img style="position: relative; margin-left:40px;" src="images/TFIDF_matrix.PNG", width=70%><br>
+
+<br>
+<span style="font-size: 8pt; position: relative; margin-left:110px">(Example taken from: http://ethen8181.github.io/machine-learning/clustering_old/tf_idf/tf_idf.html)</span>
+
+]     
 ---
 class: tocslide
 
@@ -758,6 +891,22 @@ class: tocslide
 --
         
 <img style="position: relative; margin-left:20px; margin-top: -10px;" src="images/Word2Vec_example.PNG", width=50%><br>
+
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+  ## Machine Learning
+]
+
+.right-column[
+
+<img style="position: relative; top: -40px" src="images/StatModel_topic_diagram.png", width=85%>
+
+]
 
 ---
 class: tocslide
@@ -832,6 +981,25 @@ class: tocslide
  - Manually classify text
  - Crowdsource a training set 
         
+]
+
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+  ## Machine Learning
+]
+
+.right-column[
+
+### Crowdsource training set
+<span></span>
+
+<iframe class='frame1' src="http://www.tiesdekok.com/MturkPreview/" style="border:none;"></iframe>
+
 ]
         
 ---
@@ -927,9 +1095,10 @@ Do unsupervised ML models work for all problems?
 <br>
 Examples of unsupervised models:  
         
-1. Word2Vec  
-2. Principal Component Analysis / Factor Analysis  
-3. .emphasized[Latent Dirichlet Allocation (LDA)]
+1. Principal Component Analysis / Factor Analysis  
+2. .emphasized[Latent Dirichlet Allocation (LDA)]
+
+(and Word2Vec)
         
 ]
         
@@ -970,7 +1139,43 @@ LDA then assigns each document a vector with *N* topic probabilities.
 class: tocslide
 
 <iframe class='frame' src="http://www.tiesdekok.com/ldaVIS_full_10.html" style="border:none;"></iframe>
+
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+  ## Machine Learning
+  ## Neural Networks
+]
+
+.right-column[
+
+### Neural Networks for NLP
         
+Natural Language is very complex, NLP is hard:
+        
+1. The Pope's baby steps on gays
+2. Scientists study whales from space
+3. Boy paralyzed after tumor fights back to gain black belt
+        
+<span style="font-size: 8pt; position: relative; margin-left:20px">(Examples from: http://web.stanford.edu/class/cs224n/lectures/cs224n-2017-lecture1.pdf)</span>
+]
+--
+        
+.right-column-next[
+        
+### Deep Neural Networks
+        
+DNN allow to model complex phenomenon, promising progress for NLP!
+    
+
+Interested? Check out the Stanford course CS224n ([Syllabus](http://web.stanford.edu/class/cs224n/syllabus.html))!   
+        
+]  
+      
 ---
 class: tocslide
 
@@ -1020,41 +1225,7 @@ Why?
         ]
         
         
----
-class: tocslide
 
-.left-column[
-  ## Process <br> & Clean
-  ## Feature Extraction
-  ## Represent Numerically
-  ## Machine Learning
-  ## Neural Networks
-]
-
-.right-column[
-
-### Neural Networks for NLP
-        
-Natural Language is very complex, NLP is hard:
-        
-1. The Pope's baby steps on gays
-2. Scientists study whales from space
-3. Boy paralyzed after tumor fights back to gain black belt
-        
-<span style="font-size: 8pt; position: relative; margin-left:20px">(Examples from: http://web.stanford.edu/class/cs224n/lectures/cs224n-2017-lecture1.pdf)</span>
-]
---
-        
-.right-column-next[
-        
-### Deep Neural Networks
-        
-DNN allow to model complex phenomenon, promising progress for NLP!
-    
-
-Interested? Check out the Stanford course CS224n ([Syllabus](http://web.stanford.edu/class/cs224n/syllabus.html))!   
-        
-]
 
 ---
 class: tocslide
@@ -1109,10 +1280,8 @@ class: tocslide
 ]
 
 .right-column[
-
-### Assignment
         
-Will be communicated in due time.
+<img style="position: relative; top: -20px" src="images/Assignment_topic_diagram.png", width=85%>
 
 ]
         
