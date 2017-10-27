@@ -310,15 +310,20 @@ class: tocslide
 
 ### What are we going to discuss today?
 1. Positioning session
+        
 2. Terminology
+        
 3. Language
+        
 4. Jupyter
+        
 5. NLP Python tools
+        
 6. Topics:  
 	- Process and Clean text  
 	- Direct feature extraction   
     - Represent text numerically
-	- Statistical Analysis
+	- Machine learning
     
 ]
 
@@ -334,9 +339,9 @@ class: tocslide
 
 <span style="display: block; padding-top: 1px"></span>
 
-- Relevance textual data
+- Determining relevance textual data
 
-- Sources textual data
+- Finding sources textual data
 
 - Gathering textual data
 
@@ -344,9 +349,6 @@ class: tocslide
 
 <span style="padding-left: 20px" class="arrow-right"></span> .emphasized[Analyzing textual data]
         
-
-- Include into main statistical analysis
-
 ]
 
 ---
@@ -444,10 +446,9 @@ class: tocslide
 
 1. [`scikit learn`](http://scikit-learn.org/stable/)
         
-**Topic modelling libraries**:
+**Topic modelling library**:
 
 1. [`Gensim`](https://github.com/RaRe-Technologies/gensim)
-2. [`FastText`](https://github.com/salestock/fastText.py)
 
 ]
 
@@ -500,7 +501,7 @@ class: tocslide
 - Word tokenization
     > i.e. split sentence up into tokens (i.e. words)
 - Entity normalization
-    > i.e. "$2.50" → "two dollars and fifty cents"
+    > i.e. "http://www.google.com" → "URL"
 - Lemmatization & Stemming
   > Convert tokens to a base representation
 
@@ -515,25 +516,27 @@ class: tocslide
 
 .right-column[
         
-###<span style="padding-left: 1px">Lemmatization & Stemming</span>
+###Lemmatization & Stemming     
+Stemming:  
+
+> Crude heuristic process that chops off the ends of words 
         
-<div style="position: relative; top: -40px" >
-    <br>Example: <br>
-
-    <img style="position: relative; left: +60px; padding-top: 10px" src="images/StemmingvsLemma.PNG", width=60%> <br>
-
-</div>
-
+**Lemmatizing:**
+        
+> Use vocabulary and morphological analysis of words to return the base or dictionary form
+    
 
 ]       
 --
 
 .right-column-next[
-<div style="position: relative; top: -20px" >
 
-    <img style="padding-top: 20px; padding-bottom: 10px;" src="images/StackOverflow_Stemming.PNG", width=70%><br>
+<div style="position: relative; top: 20px" >
+    <br>Example: <br>
 
-</div>
+    <img style="position: relative; left: +60px; padding-top: 10px" src="images/StemmingvsLemma.PNG", width=60%> <br>
+
+</div>        
 
 ] 
         
@@ -780,10 +783,10 @@ class: tocslide
 > [3] "The sun in the sky is bright."              
 > [4] "We can see the shining sun, the bright sun."</span>
 
-<br>
-<img style="position: relative; margin-left:40px;" src="images/TF_matrix.PNG", width=20%><br>
+<img style="position: relative; margin-left:40px;" src="images/TF_matrix.PNG", width=21%><br>
+        
+<span style='font-size:11pt'>Note: the collection of all text documents is called the *corpus* </span>
 
-<br>
 <span style="font-size: 8pt; position: relative; margin-left:110px">(Example taken from: http://ethen8181.github.io/machine-learning/clustering_old/tf_idf/tf_idf.html)</span>
 
 ]
@@ -799,16 +802,14 @@ class: tocslide
 
 .right-column[
 
-    
-### Bag of Words 
-<img style="position: relative; margin-left:20px; margin-top: -20px;" src="http://www.quentinfily.fr/wp-content/uploads/2015/11/td-idf-graphic.png", width=50%><br>
+<img style="position: relative; margin-left:20px; margin-top: -20px;" src="images/TFIDF_equation.PNG", width=50%><br><br>
 
 ]
 
 --
 .right-column-next[
 <img style="position: relative; margin-left:20px;" src="https://d1avok0lzls2w.cloudfront.net/uploads/blog/5445d032e97981.23456174.jpg", width=50%><br>
-<span style="font-size: 8pt; position: relative; margin-left:00px">(Figures taken from: http://www.quentinfily.fr/wp-content/uploads/2015/11/td-idf-graphic.png and https://moz.com/blog/7-advanced-seo-concepts)</span>  
+<span style="font-size: 8pt; position: relative; margin-left:30px">(Figure taken from:  and https://moz.com/blog/7-advanced-seo-concepts)</span>  
     
 ]
 
@@ -830,10 +831,9 @@ class: tocslide
 > [3] "The sun in the sky is bright."              
 > [4] "We can see the shining sun, the bright sun."</span>
 
-<br>
-<img style="position: relative; margin-left:40px;" src="images/TFIDF_matrix.PNG", width=70%><br>
+<img style="position: relative; margin-left:20px; margin-top: 30px;" src="images/DocumentFreq.png", width=12%>
+<img style="position: relative; margin-left:40px;" src="images/TFIDF_matrix.PNG", width=70%><br><br>
 
-<br>
 <span style="font-size: 8pt; position: relative; margin-left:110px">(Example taken from: http://ethen8181.github.io/machine-learning/clustering_old/tf_idf/tf_idf.html)</span>
 
 ]     
@@ -850,7 +850,7 @@ class: tocslide
 
 ### Word Embeddings
         
-Can we do better than a Frequency based representation?  
+Are there alternatives to the frequency based representation?  
 <span style="padding-left: 20px" class="arrow-right"></span> Yes, meet the new "secret sauce": **word embeddings**!
         
 ]
@@ -859,39 +859,20 @@ Can we do better than a Frequency based representation?
 
 .right-column-next[
 <br>
+
+Word embeddings are based on a "prediction based representation".  
         
-The most well-known method is called *word2vec*:
+Basic idea: 
         
-> Word2vec creates a prediction based representation of text based on several hundered dimensions using a two-layer neural network.   
-        <br>
+> A word is characterized by the company it keeps:  <br><br>
         
-> Each word in the corpus has a probability of belonging to each dimension, resulting in a vector of probabilities.
-        
-Note, this is sometimes referred to as *Continous Bag of Words*
+> 1. A **Ferrari** is a fast car   
+> 2. A **Lamborgini** is a fast car
+              
+<span style="font-size:10pt">Notes: the most well-known adaptation is `Word2Vec`. Word embeddings are sometimes called *Continous Bag of Words*</span>
 
 ]
         
----
-class: tocslide
-
-.left-column[
-  ## Process <br> & Clean
-  ## Feature Extraction
-  ## Represent Numerically
-]
-
-.right-column[
-
-### Word2Vec example
-        
-> Paris – France + Spain = Madrid
-        
-]
-        
---
-        
-<img style="position: relative; margin-left:20px; margin-top: -10px;" src="images/Word2Vec_example.PNG", width=50%><br>
-
 ---
 class: tocslide
 
@@ -1017,7 +998,7 @@ class: tocslide
 ### Supervised Machine Learning: models
 <span></span>
 
-Two often used models for Supervised ML are:
+Three often used models for Supervised ML:
         
 1. Naive Bayes classifier ([sklearn link](http://scikit-learn.org/stable/modules/naive_bayes.html))
 2. SVM: Support Vector Machines ([sklearn link](http://scikit-learn.org/stable/modules/svm.html))  
@@ -1035,9 +1016,27 @@ Always try multiple models to see which gives you the best results.
 * Decision Trees are more intuitive but harder to train. 
         
 Regardless of the model:  
-<span style="padding-left: 20px" class="arrow-right"></span> hyperparameters are very important!
+<span style="padding-left: 20px" class="arrow-right"></span> hyperparameter optimization is very important!
          
 ]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Process <br> & Clean
+  ## Feature Extraction
+  ## Represent Numerically
+  ## Machine Learning
+]
+
+.right-column[
+
+<img style="position: relative; top: -20px" src="https://image.slidesharecdn.com/meetupsvenhafeneger-161101090800/95/hyperparameter-optimization-sven-hafeneger-5-638.jpg", width=80%>
+
+<span style="font-size: 8pt; position: relative; margin-left:50px">(Slide taken from: https://www.slideshare.net/sparktc/hyperparameter-optimization-sven-hafeneger)</span>          
+]   
+        
 ---
 class: tocslide
 
@@ -1058,13 +1057,14 @@ class: tocslide
         
 1. Precision  
         
-> High precision --> low false positive rate
+  > High precision --> low false positive rate
         
 2. Recall  
         
-> High recall --> low false negative rate
-        
-For details see: [Precision-Recall](http://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html)
+  > High recall --> low false negative rate
+
+<br>
+<span style='font-size:13pt; position: relative; margin-left:20px'>For details see: [Precision-Recall](http://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html)</span>
         
 ]
         
@@ -1175,57 +1175,6 @@ DNN allow to model complex phenomenon, promising progress for NLP!
 Interested? Check out the Stanford course CS224n ([Syllabus](http://web.stanford.edu/class/cs224n/syllabus.html))!   
         
 ]  
-      
----
-class: tocslide
-
-.left-column[
-  ## Process <br> & Clean
-  ## Feature Extraction
-  ## Represent Numerically
-  ## Machine Learning
-  ## Neural Networks
-]
-
-.right-column[
-
-### Neural Networks Primer
-
-Linear regression in "Neural Network" representation:
-        
-<img style="position: relative; margin-left:20px; margin-top: -10px;" src="images/Linear_model.PNG", width=55%><br>
-
-]
-        
----
-class: tocslide
-
-.left-column[
-  ## Process <br> & Clean
-  ## Feature Extraction
-  ## Represent Numerically
-  ## Machine Learning
-  ## Neural Networks
-]
-
-.right-column[
-
-### Neural Networks Primer
-
-Shallow Neutral Network representation:
-        
-<img style="position: relative; margin-left:20px; margin-top: -10px;" src="images/Neural_network.PNG", width=75%><br>
-
-]
-        
---
-.right-column-next[
-Why?   
-<span style="padding-left: 20px" class="arrow-right"></span> Allows to model complex non-linear relationships!
-        ]
-        
-        
-
 
 ---
 class: tocslide
@@ -1240,6 +1189,8 @@ class: tocslide
         
 Getting started with Python / NLP can be overwhelming.   
 <span style="padding-left: 20px" class="arrow-right"></span> This is normal! 
+        
+<br>
         
 **General tips:**
         
@@ -1299,6 +1250,114 @@ class: tocslide
 
 ### Questions?
 
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Closing remarks
+  ## GitHub repository
+  ## Assignment
+  ## Questions?
+  ## Extra
+]
+
+.right-column[
+
+### Word Embeddings
+        
+Can we do better than a Frequency based representation?  
+<span style="padding-left: 20px" class="arrow-right"></span> Yes, meet the new "secret sauce": **word embeddings**!
+        
+]
+        
+--
+
+.right-column-next[
+<br>
+        
+The most well-known method is called *word2vec*:
+        
+> Word2vec creates a prediction based representation of text based on several hundered dimensions using a two-layer neural network.   
+        <br>
+        
+> Each word in the corpus has a probability of belonging to each dimension, resulting in a vector of probabilities.
+        
+Note, this is sometimes referred to as *Continous Bag of Words*
+
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Closing remarks
+  ## GitHub repository
+  ## Assignment
+  ## Questions?
+  ## Extra
+]
+
+.right-column[
+
+### Word2Vec example
+        
+> Paris – France + Spain = Madrid
+        
+]
+        
+--
+        
+<img style="position: relative; margin-left:20px; margin-top: -10px;" src="images/Word2Vec_example.PNG", width=50%><br>
+        
+        
+---
+class: tocslide
+
+.left-column[
+  ## Closing remarks
+  ## GitHub repository
+  ## Assignment
+  ## Questions?
+  ## Extra
+]
+
+.right-column[
+
+### Neural Networks Primer
+
+Linear regression in "Neural Network" representation:
+        
+<img style="position: relative; margin-left:20px; margin-top: -10px;" src="images/Linear_model.PNG", width=55%><br>
+
+]
+        
+---
+class: tocslide
+
+.left-column[
+  ## Closing remarks
+  ## GitHub repository
+  ## Assignment
+  ## Questions?
+  ## Extra
+]
+
+.right-column[
+
+### Neural Networks Primer
+
+Shallow Neutral Network representation:
+        
+<img style="position: relative; margin-left:20px; margin-top: -10px;" src="images/Neural_network.PNG", width=75%><br>
+
+]
+        
+--
+.right-column-next[
+Why?   
+<span style="padding-left: 20px" class="arrow-right"></span> Allows to model complex non-linear relationships!
 ]
 
 
